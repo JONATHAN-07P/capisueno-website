@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capisueño - Tecnología que abraza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-cielo: #87CEEB;
+            --blanco: #FFFFFF;
+            --amarillo-pastel: #FFEAA7;
+            --gris-suave: #F5F5F5;
+            --texto: #333333;
+            --azul-oscuro: #5DADE2;
+            --sombra: rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--texto);
+            background-color: var(--blanco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--blanco);
+            box-shadow: 0 2px 15px var(--sombra);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--azul-cielo);
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--azul-cielo);
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--texto);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--azul-cielo);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--azul-cielo);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-cielo) 0%, var(--blanco) 100%);
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--texto);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--texto);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--amarillo-pastel);
+            color: var(--texto);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px var(--sombra);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .hero-image {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .capibara-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 8px solid var(--blanco);
+            transition: all 0.5s ease;
+        }
+        
+        .capibara-img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--azul-cielo);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--amarillo-pastel);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 20px auto 0;
+            color: var(--texto);
+            font-size: 1.1rem;
+        }
+        
+        /* Producto */
+        .producto {
+            background-color: var(--gris-suave);
+            position: relative;
+        }
+        
+        .producto:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,128L48,138.7C96,149,192,171,288,170.7C384,171,480,149,576,133.3C672,117,768,107,864,112C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .producto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sensor-card {
+            background-color: var(--blanco);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px var(--sombra);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sensor-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--azul-cielo), var(--amarillo-pastel));
+        }
+        
+        .sensor-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .sensor-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--azul-cielo);
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .sensor-card:hover .sensor-icon {
+            transform: scale(1.2);
+        }
+        
+        .sensor-card h3 {
+            margin-bottom: 15px;
+            color: var(--azul-cielo);
+            font-size: 1.4rem;
+        }
+        
+        /* App */
+        .app-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .app-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .app-mockup {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .app-mockup:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--amarillo-pastel);
+            top: -20px;
+            right: -20px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .app-mockup:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--azul-cielo);
+            bottom: -30px;
+            left: -30px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .app-features {
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .feature:hover {
+            background-color: var(--gris-suave);
+            transform: translateX(10px);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--azul-cielo), var(--azul-oscuro));
+            color: var(--blanco);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Nosotros */
+        .nosotros {
+            background-color: var(--gris-suave);
+            position: relative;
+        }
+        
+        .nosotros:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .nosotros-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nosotros-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .nosotros-text h3 {
+            font-size: 1.8rem;
+            color: var(--azul-cielo);
+            margin-bottom: 20px;
+        }
+        
+        .nosotros-text p {
+            margin-bottom: 20px;
+        }
+        
+        .nosotros-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .nosotros-image:before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--amarillo-pastel);
+            top: -30px;
+            left: -30px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Contacto */
+        .contacto-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--blanco);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px var(--sombra);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--azul-cielo);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--azul-cielo);
+            box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.3);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--azul-cielo), var(--azul-oscuro));
+            color: var(--blanco);
+            border-radius: 50%;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-10px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--azul-cielo) 0%, var(--azul-oscuro) 100%);
+            color: var(--blanco);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: var(--blanco);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--amarillo-pastel);
+            padding-left: 5px;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Animaciones */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .app-info, .nosotros-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">🧸</div>
+                <h1>Capisueño</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#producto">Producto</a></li>
+                    <li><a href="#app">App</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <h2>Tecnología que abraza</h2>
+            <p>Cada noche, los padres buscan algo más que dormir… buscan tranquilidad. Capisueño es el peluche inteligente que cuida el sueño de los más pequeños, midiendo temperatura, ruido, posición y calidad del descanso.</p>
+            <a href="#producto" class="btn">Conoce más</a>
+            
+            <div class="hero-image">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_626934-MLM88690656682_072025-O-peluche-capibara-chamarra-amarilla-impermeable-regalo-50cm.webp" alt="Capibara Capisueño" class="capibara-img floating">
+            </div>
+        </div>
+    </section>
+
+    <!-- Producto -->
+    <section class="producto" id="producto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Producto</h2>
+                <p>Capisueño combina la ternura de un peluche con tecnología avanzada para monitorear el sueño de tu hijo.</p>
+            </div>
+            <div class="producto-grid">
+                <div class="sensor-card">
+                    <div class="sensor-icon">🌡️</div>
+                    <h3>Temperatura Corporal</h3>
+                    <p>Monitorea la temperatura de tu bebé para asegurar su confort durante toda la noche.</p>
+                </div>
+                <div class="sensor-card">
+                    <div class="sensor-icon">🔊</div>
+                    <h3>Ruido Ambiental</h3>
+                    <p>Detecta sonidos que puedan interrumpir el sueño y te alerta si es necesario.</p>
+                </div>
+                <div class="sensor-card">
+                    <div class="sensor-icon">🛌</div>
+                    <h3>Posición del Cuerpo</h3>
+                    <p>Registra la postura de tu hijo para garantizar una posición segura al dormir.</p>
+                </div>
+                <div class="sensor-card">
+                    <div class="sensor-icon">💤</div>
+                    <h3>Calidad del Sueño</h3>
+                    <p>Analiza los patrones de sueño y te proporciona informes detallados cada mañana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App -->
+    <section id="app">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra App</h2>
+                <p>Conecta Capisueño con tu smartphone y recibe información en tiempo real sobre el sueño de tu hijo.</p>
+            </div>
+            <div class="app-container">
+                <div class="app-info">
+                    <h3>Monitoreo en tiempo real</h3>
+                    <p>Nuestra aplicación te permite visualizar todos los datos recopilados por Capisueño de forma clara y sencilla.</p>
+                    
+                    <div class="app-features">
+                        <div class="feature">
+                            <div class="feature-icon">📊</div>
+                            <div>
+                                <h4>Estadísticas detalladas</h4>
+                                <p>Visualiza gráficos y tendencias del sueño de tu hijo.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🔔</div>
+                            <div>
+                                <h4>Alertas inteligentes</h4>
+                                <p>Recibe notificaciones cuando se detecten anomalías.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">📱</div>
+                            <div>
+                                <h4>Interfaz intuitiva</h4>
+                                <p>Diseñada para padres con poco tiempo pero muchas preocupaciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-mockup">
+                    <!-- Mockup de la app -->
+                    <div style="background: linear-gradient(135deg, var(--azul-cielo) 0%, var(--blanco) 100%); width: 300px; height: 600px; margin: 0 auto; border-radius: 40px; padding: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); position: relative; overflow: hidden;">
+                        <div style="background-color: var(--blanco); height: 100%; border-radius: 30px; padding: 25px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 3.5rem; margin-bottom: 20px;">🌙</div>
+                                <h3 style="color: var(--azul-cielo); margin-bottom: 10px;">Capisueño App</h3>
+                                <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Sueño de esta noche: <strong>8h 23m</strong></p>
+                            </div>
+                            
+                            <div style="width: 100%;">
+                                <div style="width: 100%; background: linear-gradient(135deg, var(--gris-suave), var(--blanco)); border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 5px 10px rgba(0,0,0,0.05);">
+                                    <p style="margin: 0; font-size: 0.9rem; display: flex; justify-content: space-between;"><span>Temperatura:</span> <span style="font-weight: bold; color: var(--azul-cielo);">36.5°C</span></p>
+                                </div>
+                                <div style="width: 100%; background: linear-gradient(135deg, var(--gris-suave), var(--blanco)); border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 5px 10px rgba(0,0,0,0.05);">
+                                    <p style="margin: 0; font-size: 0.9rem; display: flex; justify-content: space-between;"><span>Calidad del sueño:</span> <span style="font-weight: bold; color: var(--azul-cielo);">92%</span></p>
+                                </div>
+                                <div style="width: 100%; background: linear-gradient(135deg, var(--gris-suave), var(--blanco)); border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 5px 10px rgba(0,0,0,0.05);">
+                                    <p style="margin: 0; font-size: 0.9rem; display: flex; justify-content: space-between;"><span>Posición:</span> <span style="font-weight: bold; color: var(--azul-cielo);">Segura</span></p>
+                                </div>
+                            </div>
+                            
+                            <div style="width: 100%; text-align: center;">
+                                <div style="background: linear-gradient(135deg, var(--amarillo-pastel), #FFD166); color: var(--texto); padding: 12px; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                                    Ver informe completo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros -->
+    <section class="nosotros" id="nosotros">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Historia</h2>
+                <p>Conoce el propósito detrás de Capisueño y nuestro compromiso con el bienestar infantil.</p>
+            </div>
+            <div class="nosotros-content">
+                <div class="nosotros-text">
+                    <h3>Nuestra Misión</h3>
+                    <p>Capisueño nació de la necesidad de combinar la calidez emocional de un peluche tradicional con la innovación tecnológica que ofrece tranquilidad a los padres.</p>
+                    <p>Como padres nosotros mismos, entendemos la preocupación constante por el bienestar de nuestros hijos durante la noche. Queríamos crear una solución que no solo monitoreara parámetros importantes, sino que también mantuviera la magia y ternura de la infancia.</p>
+                    <p>Nuestro equipo está formado por ingenieros y diseñadores que trabajan juntos para garantizar que Capisueño sea seguro, efectivo y adorable.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="#contacto" class="btn">Contáctanos</a>
+                    </div>
+                </div>
+                <div class="nosotros-image">
+                    <!-- Imagen del equipo o proceso -->
+                    <div style="background: linear-gradient(135deg, var(--amarillo-pastel) 0%, var(--blanco) 100%); width: 100%; height: 350px; border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden;">
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="font-size: 5rem; margin-bottom: 15px;">🧸</div>
+                            <h3 style="color: var(--texto); margin-bottom: 10px;">Tecnología con corazón</h3>
+                            <p style="color: var(--texto);">Diseñado con amor para tus pequeños</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>¿Tienes preguntas sobre Capisueño? Nos encantaría escucharte.</p>
+            </div>
+            <div class="contacto-form">
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Enviar mensaje</button>
+                </form>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/capi_sue" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div style="font-size: 2.5rem; margin-right: 10px;">🧸</div>
+                        <h2 style="color: var(--blanco);">Capisueño</h2>
+                    </div>
+                    <p class="footer-text">Tecnología que abraza los sueños de tus pequeños.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#producto">Producto</a></li>
+                        <li><a href="#app">App</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Capisueño. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de cambio de color en el header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.backgroundColor = 'var(--blanco)';
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Animación de elementos al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar animación a elementos
+        document.querySelectorAll('.sensor-card, .feature, .app-mockup > div, .nosotros-image > div').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
